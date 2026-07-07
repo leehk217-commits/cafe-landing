@@ -134,6 +134,23 @@
     transform: translateY(-2px);
   }
 
+  .btn-group {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--cream-dark);
+  }
+
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+  }
+
   /* Section common */
   section { padding: 100px 0; }
 
@@ -343,7 +360,10 @@
     <span>Since 2018, Seoul</span>
     <h1>Cafe Onda</h1>
     <p>매일 아침 직접 로스팅한 원두로 내리는 커피, 따뜻한 온기가 있는 공간에서 잠시 쉬어가세요.</p>
-    <a class="btn" href="#menu">메뉴 보기</a>
+    <div class="btn-group">
+      <a class="btn" href="#menu">메뉴 보기</a>
+      <a class="btn btn-outline" href="#location">오시는 길</a>
+    </div>
   </div>
 </section>
 
