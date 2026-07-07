@@ -300,6 +300,21 @@
 
   footer strong { color: var(--cream); }
 
+  footer .social {
+    display: inline-flex;
+    gap: 16px;
+    margin: 14px 0;
+  }
+
+  footer .social a {
+    color: var(--cream-dark);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  footer .social a:hover { color: var(--coffee-light); }
+
   @media (max-width: 860px) {
     .nav ul { display: none; }
     .about, .location-grid { grid-template-columns: 1fr; }
@@ -444,6 +459,10 @@
 
 <footer>
   <p><strong>CAFE ONDA</strong></p>
+  <div class="social">
+    <a href="https://instagram.com/cafe_onda" target="_blank" rel="noopener">Instagram</a>
+    <a href="tel:0212345678">02-1234-5678</a>
+  </div>
   <p>&copy; 2026 Cafe Onda. All rights reserved.</p>
 </footer>
 
