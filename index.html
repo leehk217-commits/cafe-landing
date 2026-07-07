@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe Onda | 카페 온다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coffee-dark: #3b2a20;
+    --coffee: #6f4e37;
+    --coffee-light: #a9825c;
+    --cream: #f6efe6;
+    --cream-dark: #ece1d0;
+    --text: #2b211a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+  a { text-decoration: none; color: inherit; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(59, 42, 32, 0.9);
+    backdrop-filter: blur(6px);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    color: var(--cream);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .nav ul {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav ul li a {
+    color: var(--cream-dark);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav ul li a:hover { color: #fff; }
+
+  /* Hero */
+  .hero {
+    height: 100vh;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(rgba(30, 20, 14, 0.55), rgba(30, 20, 14, 0.55)),
+      url('https://picsum.photos/seed/cafe-hero/1600/1000') center/cover no-repeat;
+  }
+
+  .hero-content { color: #fff; padding: 0 20px; }
+
+  .hero-content span {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    color: var(--cream-dark);
+  }
+
+  .hero-content h1 {
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .hero-content p {
+    font-size: 17px;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    color: var(--cream-dark);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 34px;
+    background: var(--coffee-light);
+    color: #fff;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn:hover {
+    background: #c1966a;
+    transform: translateY(-2px);
+  }
+
+  /* Section common */
+  section { padding: 100px 0; }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-head span {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--coffee-light);
+  }
+
+  .section-head h2 {
+    font-size: 38px;
+    margin-top: 12px;
+    color: var(--coffee-dark);
+  }
+
+  /* About */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .about img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(59, 42, 32, 0.2);
+  }
+
+  .about-text p {
+    margin-bottom: 20px;
+    color: #574739;
+  }
+
+  .stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+  }
+
+  .stats div strong {
+    display: block;
+    font-size: 28px;
+    font-family: 'Playfair Display', serif;
+    color: var(--coffee-dark);
+  }
+
+  .stats div span {
+    font-size: 13px;
+    color: #7a6a5a;
+  }
+
+  /* Menu */
+  .menu { background: var(--cream-dark); }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .menu-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(59, 42, 32, 0.08);
+    transition: transform 0.25s;
+  }
+
+  .menu-card:hover { transform: translateY(-6px); }
+
+  .menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .menu-card-body { padding: 22px; }
+
+  .menu-card-body .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+
+  .menu-card-body h3 { font-size: 19px; color: var(--coffee-dark); }
+
+  .menu-card-body .price {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--coffee-light);
+  }
+
+  .menu-card-body p {
+    font-size: 14px;
+    color: #7a6a5a;
+  }
+
+  /* Gallery */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s;
+  }
+
+  .gallery-grid img:hover { transform: scale(1.04); }
+
+  /* Location */
+  .location {
+    background: var(--coffee-dark);
+    color: var(--cream-dark);
+  }
+
+  .location .section-head h2 { color: #fff; }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+
+  .location img {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .info-item {
+    margin-bottom: 26px;
+  }
+
+  .info-item h3 {
+    font-size: 16px;
+    color: var(--cream);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .info-item p { color: #c9bba7; font-size: 15px; }
+
+  /* Footer */
+  footer {
+    background: #241a13;
+    color: #a99a89;
+    text-align: center;
+    padding: 40px 24px;
+    font-size: 13px;
+  }
+
+  footer strong { color: var(--cream); }
+
+  @media (max-width: 860px) {
+    .nav ul { display: none; }
+    .about, .location-grid { grid-template-columns: 1fr; }
+    .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-content h1 { font-size: 38px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a class="logo" href="#top">CAFE ONDA</a>
+    <ul>
+      <li><a href="#about">소개</a></li>
+      <li><a href="#menu">메뉴</a></li>
+      <li><a href="#gallery">갤러리</a></li>
+      <li><a href="#location">오시는 길</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-content">
+    <span>Since 2018, Seoul</span>
+    <h1>Cafe Onda</h1>
+    <p>매일 아침 직접 로스팅한 원두로 내리는 커피, 따뜻한 온기가 있는 공간에서 잠시 쉬어가세요.</p>
+    <a class="btn" href="#menu">메뉴 보기</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container about">
+    <img src="https://picsum.photos/seed/cafe-interior/700/560" alt="카페 내부 전경">
+    <div class="about-text">
+      <div class="section-head" style="text-align:left; margin-bottom:24px;">
+        <span>About Us</span>
+        <h2>느린 시간을 담은 공간</h2>
+      </div>
+      <p>Cafe Onda는 도심 속에서 잠시 숨을 고를 수 있는 작은 쉼터입니다. 좋은 원두, 좋은 빛, 좋은 사람들이 만나 만들어내는 편안한 분위기를 지향합니다.</p>
+      <p>매장에서 직접 로스팅한 스페셜티 원두와 계절마다 바뀌는 디저트로 늘 새로운 경험을 제공합니다.</p>
+      <div class="stats">
+        <div>
+          <strong>7</strong>
+          <span>운영 연차</span>
+        </div>
+        <div>
+          <strong>12</strong>
+          <span>원두 산지</span>
+        </div>
+        <div>
+          <strong>4.9</strong>
+          <span>평균 평점</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="container">
+    <div class="section-head">
+      <span>Menu</span>
+      <h2>시그니처 메뉴</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="https://picsum.photos/seed/latte/500/400" alt="카페라떼">
+        <div class="menu-card-body">
+          <div class="row">
+            <h3>카페라떼</h3>
+            <span class="price">5,500원</span>
+          </div>
+          <p>부드러운 스팀 밀크와 에스프레소의 조화</p>
+        </div>
+      </div>
+      <div class="menu-card">
+        <img src="https://picsum.photos/seed/handdrip/500/400" alt="핸드드립 커피">
+        <div class="menu-card-body">
+          <div class="row">
+            <h3>핸드드립</h3>
+            <span class="price">6,500원</span>
+          </div>
+          <p>주마다 선정되는 싱글 오리진 원두</p>
+        </div>
+      </div>
+      <div class="menu-card">
+        <img src="https://picsum.photos/seed/dessert/500/400" alt="디저트">
+        <div class="menu-card-body">
+          <div class="row">
+            <h3>바스크 치즈케이크</h3>
+            <span class="price">7,000원</span>
+          </div>
+          <p>진한 풍미의 수제 치즈케이크</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <span>Gallery</span>
+      <h2>공간을 둘러보세요</h2>
+    </div>
+    <div class="gallery-grid">
+      <img src="https://picsum.photos/seed/cafe1/400/400" alt="카페 사진 1">
+      <img src="https://picsum.photos/seed/cafe2/400/400" alt="카페 사진 2">
+      <img src="https://picsum.photos/seed/cafe3/400/400" alt="카페 사진 3">
+      <img src="https://picsum.photos/seed/cafe4/400/400" alt="카페 사진 4">
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="container">
+    <div class="section-head">
+      <span>Visit Us</span>
+      <h2>오시는 길</h2>
+    </div>
+    <div class="location-grid">
+      <img src="https://picsum.photos/seed/cafe-map/700/500" alt="카페 위치 전경">
+      <div>
+        <div class="info-item">
+          <h3>주소</h3>
+          <p>서울특별시 마포구 어딘가길 12, 1층</p>
+        </div>
+        <div class="info-item">
+          <h3>영업 시간</h3>
+          <p>매일 오전 9시 - 오후 10시 (연중무휴)</p>
+        </div>
+        <div class="info-item">
+          <h3>연락처</h3>
+          <p>02-1234-5678</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>CAFE ONDA</strong></p>
+  <p>&copy; 2026 Cafe Onda. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
